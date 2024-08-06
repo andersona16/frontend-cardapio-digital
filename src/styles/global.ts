@@ -18,6 +18,11 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased; 
   }
 
+  h1 {
+    font-family: "Inter" ,sans-serif;    
+
+  }
+
   input, select { 
     font-family: "Inter" ,sans-serif;    
   }
@@ -25,5 +30,6 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
 }
 `;
