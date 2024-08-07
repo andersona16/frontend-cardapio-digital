@@ -55,6 +55,8 @@ const AddNewFood: React.FC<AddNewFoodProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  console.log(formData);
+
   useEffect(() => {
     if (itemId) {
       const fetchItemData = async () => {
@@ -114,33 +116,33 @@ const AddNewFood: React.FC<AddNewFoodProps> = ({
     []
   );
 
-  const handleFileChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const file = event.target.files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setFormData((prevData) => ({
-            ...prevData,
-            image: reader.result as string,
-          }));
-        };
-        reader.readAsDataURL(file);
-      }
-    },
-    []
-  );
+  // const handleFileChange = useCallback(
+  //   (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     const file = event.target.files?.[0];
+  //     if (file) {
+  //       const reader = new FileReader();
+  //       reader.onloadend = () => {
+  //         setFormData((prevData) => ({
+  //           ...prevData,
+  //           image: reader.result as string,
+  //         }));
+  //       };
+  //       reader.readAsDataURL(file);
+  //     }
+  //   },
+  //   []
+  // );
 
-  const handleRemoveImage = useCallback(() => {
-    setFormData((prevData) => ({
-      ...prevData,
-      image: "",
-    }));
+  // const handleRemoveImage = useCallback(() => {
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     image: "",
+  //   }));
 
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  }, []);
+  //   if (fileInputRef.current) {
+  //     fileInputRef.current.value = "";
+  //   }
+  // }, []);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -201,10 +203,6 @@ const AddNewFood: React.FC<AddNewFoodProps> = ({
       price: "",
       image: "",
     });
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
   }, []);
 
   return (
@@ -228,7 +226,16 @@ const AddNewFood: React.FC<AddNewFoodProps> = ({
           label="Preço do Produto"
         />
 
-        <ContainerFile>
+        <InputForm
+          type="text"
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+          error={errors.image}
+          label="Imagem do Produto"
+        />
+
+        {/* <ContainerFile>
           <label>Imagem do Produto</label>
           <input
             type="file"
@@ -244,7 +251,7 @@ const AddNewFood: React.FC<AddNewFoodProps> = ({
               </ImagePreview>
             </ImageContainer>
           )}
-        </ContainerFile>
+        </ContainerFile> */}
 
         <ContainerButton>
           <button type="submit">{isEditing ? "Atualizar" : "Adicionar"}</button>
