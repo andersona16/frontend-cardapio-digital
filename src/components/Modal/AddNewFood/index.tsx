@@ -1,16 +1,10 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
-import * as Yup from "yup";
-import { toast } from "react-toastify";
-import api from "../../../services/api";
-import InputForm from "../../InputForm";
-import {
-  ContainerButton,
-  ContainerFile,
-  ContainerForm,
-  ImageContainer,
-  ImagePreview,
-  TrashIcon,
-} from "./styles";
+import React, { useCallback, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import * as Yup from 'yup';
+
+import api from '../../../services/api';
+import InputForm from '../../InputForm';
+import { ContainerButton, ContainerForm } from './styles';
 
 interface FormData {
   title: string;
@@ -53,7 +47,7 @@ const AddNewFood: React.FC<AddNewFoodProps> = ({
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isEditing, setIsEditing] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  // const fileInputRef = useRef<HTMLInputElement>(null);
 
   console.log(formData);
 
